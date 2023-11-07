@@ -1,0 +1,19 @@
+FROM php:8.1-fpm-alpine
+
+LABEL maintener="guidis"
+
+RUN apk add --no-cache libpng libpng-dev libjpeg-turbo libjpeg-turbo-dev libwebp libwebp-dev zlib zlib-dev libxpm libxpm-dev freetype freetype-dev libzip libzip-dev && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm && \
+    docker-php-ext-install gd pdo pdo_mysql zip
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+WORKDIR /app
+
+COPY . /app
+
+RUN composer install
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
