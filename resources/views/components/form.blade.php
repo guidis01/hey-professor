@@ -7,7 +7,7 @@
 
 <form action="{{ route('question.store') }}" method="post">
     @csrf
-s
+
     @if($put)
         @method('PUT')
     @endif
