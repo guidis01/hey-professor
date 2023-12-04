@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Cores
+# # Cores
 NC='\033[0m'
 BBlue='\033[1;34m'
 BRed='\033[1;31m'
@@ -22,3 +22,5 @@ if [[ $COMMIT_MESSAGE == $ISSUE_ID* ]]; then
 fi
 
 echo "$ISSUE_ID: $COMMIT_MESSAGE" >$1
+
+    # npx --no -- commitlint --edit ${1}
