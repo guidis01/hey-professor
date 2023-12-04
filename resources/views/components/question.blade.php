@@ -19,11 +19,17 @@
             </button>
         </x-form>
 
-        <a href="{{ route('question.like', $question) }}" class="flex items-start space-x-1 text-red-700">
-            <x-icons.thumbs-down
-                class="w-5 h-5  hover:text-red-300 cursor-pointer"
-            />
-            <span> {{ $question->unlikes }} </span>
-        </a>
+        <x-form :action="route('question.unlike', $question)">
+            <button
+                class="flex items-start space-x-1 text-red-700"
+                type="submit"
+            >
+                <x-icons.thumbs-down
+                    class="w-5 h-5  hover:text-red-300 cursor-pointer"
+                />
+                <span> {{ $question->unlikes }} </span>
+            </button>
+        </x-form>
+
     </div>
 </div>
