@@ -5,9 +5,9 @@
     'delete' => null
 ])
 
-<form action="{{ route('question.store') }}" method="post">
+<form action="{{ $action }}" method="post">
     @csrf
-s
+
     @if($put)
         @method('PUT')
     @endif
