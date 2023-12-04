@@ -45,8 +45,8 @@ it('should be able to unlike a question', function () {
 
     assertDatabaseHas('votes', [
         'question_id' => $question->id,
-        'like'        => 1,
-        'unlike'      => 0,
+        'like'        => 0,
+        'unlike'      => 1,
         'user_id'     => $user->id,
     ]);
 });
