@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Question;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Question};
+use App\Models\Question;
 use Illuminate\Http\RedirectResponse;
 
-class LikeController extends Controller
+class PublishController extends Controller
 {
     public function __invoke(Question $question): RedirectResponse
     {
-        user()->like($question);
+        $this->authorize('publish', $question);
+
+        $question->update(['draft' => false]);
 
         return back();
     }
