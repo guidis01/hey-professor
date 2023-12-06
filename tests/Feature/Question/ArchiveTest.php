@@ -5,11 +5,12 @@ use App\Models\{Question, User};
 use function Pest\Laravel\{actingAs, assertSoftDeleted, patch};
 
 it('should be able to archive a question', function () {
-    $rightUser = User::factory()->create();
-    $wrongUser = User::factory()->create();
-    $question  = Question::factory()->create(['draft' => true, 'created_by' => $rightUser->id]);
+    $user     = User::factory()->create();
+    $question = Question::factory()
+        ->for($user, 'createdBy')
+        ->create(['draft' => true]);
 
-    actingAs($wrongUser);
+    actingAs($user);
 
     patch(route('question.archive', $question))
         ->assertRedirect();
